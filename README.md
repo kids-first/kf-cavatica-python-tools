@@ -28,4 +28,8 @@ Add a handful of tags that summarize topics relating to the repository.
 If the repo has a documentation site or webpage, add it next to the repository
 description.
 
-###
+### Installation
+
+```sh
+pip install git+https://github.com/kids-first/kf-cavatica-python-tools.git
+```
