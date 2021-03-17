@@ -5,6 +5,7 @@ import sevenbridges as sbg
 import argparse
 import pandas as pd
 from kf_cavatica.projects import fetch_project
+
 from kf_cavatica.files import list_files_recursively
 from pathlib import Path
 from tqdm import tqdm
@@ -82,15 +83,15 @@ api = sbg.Api(
 # Generate the project object
 project = fetch_project(api, args.project, args.project_id)
 
-# generate the list of files
-all_files = list_files_recursively(api, api.files.query(project=project))
+
+all_files = list_files_recursively(
+    api, api.files.query(project=project), project
+)
 
 # Download the files
 for file in tqdm(all_files):
-    file.download(
-        str(
-            args.download_location
-            / file.metadata["parent_file_name"]
-            / file.name
-        )
+    download_location = (
+        args.download_location / file.metadata["parent_file_name"]
     )
+    download_location.mkdir(parents=True, exist_ok=True)
+    file.download(str(download_location / file.name))
