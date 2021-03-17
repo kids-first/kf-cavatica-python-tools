@@ -87,7 +87,6 @@ all_files = list_files_recursively(api, api.files.query(project=project))
 
 # Download the files
 for file in tqdm(all_files):
-    breakpoint()
     file.download(
         str(
             args.download_location
