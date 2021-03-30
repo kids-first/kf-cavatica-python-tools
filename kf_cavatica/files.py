@@ -48,3 +48,6 @@ def list_files_recursively(
             )
             folder_name = folder_name.parents[0]
     return files
+
+
+def fetch_file_from_id(file_id):

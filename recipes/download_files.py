@@ -4,8 +4,8 @@ script description
 import sevenbridges as sbg
 import argparse
 import pandas as pd
+from kf_cavatica.io import read_cavatica_cli_filelist
 from kf_cavatica.projects import fetch_project
-
 from kf_cavatica.files import list_files_recursively
 from pathlib import Path
 from tqdm import tqdm
@@ -80,13 +80,18 @@ api = sbg.Api(
     ],
 )
 
-# Generate the project object
-project = fetch_project(api, args.project, args.project_id)
 
+def fetch_files(api, file_list=None, project=None):
+    if args.file_list:
+        read_cavatica_cli_filelist(file_list)
+    elif args.project:
+        # Generate the project object
+        project = fetch_project(api, args.project, args.project_id)
+        all_files = list_files_recursively(
+            api, api.files.query(project=project), project
+        )
+        return all_files
 
-all_files = list_files_recursively(
-    api, api.files.query(project=project), project
-)
 
 # Download the files
 for file in tqdm(all_files):
