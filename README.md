@@ -32,3 +32,13 @@ To run the script from your shell:
 ```sh
 python recipes/download_files.py --project project_name  --download_location path/to/files
 ```
+
+### Download Files from a Directory in a Cavatic Project
+
+In the `recipes` directory in this repo is a script to download files. Pass that script the name of the project you want to download all the files from and the location you want to save the files. 
+
+To run the script from your shell:
+
+```sh
+python recipes/download_files.py --project project_name  --download_location path/to/files --project_path path/to/stuff
+```
