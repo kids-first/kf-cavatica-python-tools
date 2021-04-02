@@ -18,20 +18,21 @@ parser = argparse.ArgumentParser(
                    """,
 )
 parser.add_argument(
-    "--project",
+    "--project_id",
+    metavar="Cavatica project ID",
+    type=str,
+    help="""'Username/project_name' ID of the project in cavatica where the 
+            files come from.""",
+)
+parser.add_argument(
+    "--project_name",
     metavar="Cavatica project name",
     type=str,
-    help="""Name of the project in cavatica where the files should be put.
+    help="""Name of the project in cavatica where the files come from.
             Note that a user may have multiple projects with the same name, so
             best practice is to reference entities by ID.\n
             See `--project_id`.
             """,
-)
-parser.add_argument(
-    "--project_id",
-    metavar="Cavatica project ID",
-    type=str,
-    help="""ID of the project in cavatica where the files should be put.""",
 )
 parser.add_argument(
     "--project_path",
@@ -91,7 +92,7 @@ api = sbg.Api(
 )
 
 # Generate the project object
-project = fetch_project(api, args.project, args.project_id)
+project = fetch_project(api, args.project_name, args.project_id)
 
 all_files = list_files_recursively(
     api, api.files.query(project=project), project
