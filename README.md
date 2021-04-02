@@ -23,9 +23,11 @@ To authenticate with sevenbridges, this package looks for a sevenbridges credent
 
 ## Recipes
 
-### Download All the Files in a Cavatica Project
+### Download files from a Cavatica Project
 
 In the `recipes` directory in this repo is a script to download files. Pass that script the name of the project you want to download all the files from and the location you want to save the files. 
+
+#### Download All the Files in a Cavatica Project
 
 To run the script from your shell:
 
@@ -33,12 +35,18 @@ To run the script from your shell:
 python recipes/download_files.py --project project_name  --download_location path/to/files
 ```
 
-### Download Files from a Directory in a Cavatic Project
+#### Download Files from a Directory in a Cavatic Project
 
-In the `recipes` directory in this repo is a script to download files. Pass that script the name of the project you want to download all the files from and the location you want to save the files. 
+To only download files in a specific directory in a project, specify the path to those files within the project
 
 To run the script from your shell:
 
 ```sh
 python recipes/download_files.py --project project_name  --download_location path/to/files --project_path path/to/stuff
 ```
+
+#### Notes
+
+If a file can't be downloaded, a warning is sent to the console. Archived files
+ can not be downloaded from the API. To Download archived files, they first need
+ to be restored in Cavatica.
