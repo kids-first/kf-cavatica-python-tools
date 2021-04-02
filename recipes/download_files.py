@@ -10,6 +10,7 @@ from kf_cavatica.files import list_files_recursively
 from pathlib import Path
 from tqdm import tqdm
 import os
+import logging
 
 # Arguments
 parser = argparse.ArgumentParser(
@@ -114,4 +115,7 @@ for file in tqdm(all_files):
         args.download_location / file.metadata["parent_file_name"]
     )
     download_location.mkdir(parents=True, exist_ok=True)
-    file.download(str(download_location / file.name))
+    try:
+        file.download(str(download_location / file.name))
+    except Exception as e:
+        logging.warning(f"cant download {file.name}. {e}")
