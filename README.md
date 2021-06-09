@@ -21,6 +21,8 @@ pip install git+https://github.com/kids-first/kf-cavatica-python-tools.git
 
 To authenticate with sevenbridges, this package looks for a sevenbridges credential profile. For instructions to set up a credential file, see instructions on Sevenbridges' website, [here](https://docs.sevenbridges.com/docs/store-credentials-to-access-seven-bridges-client-applications-and-libraries#section-unified-configuration-file).
 
+Make sure to set the endpoint to the cavatica api endpoint `https://cavatica-api.sbgenomics.com/v2`in the config file.
+
 ## Recipes
 
 ### Download files from a Cavatica Project
